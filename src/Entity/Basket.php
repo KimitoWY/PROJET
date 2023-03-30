@@ -15,11 +15,11 @@ class Basket
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'baskets')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'id_user', nullable: false)]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'baskets')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'id_good', nullable: false)]
     private ?Good $good = null;
 
     #[ORM\Column]
