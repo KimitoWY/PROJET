@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Basket::class)]
+    private Collection $baskets;
+
+    public function __construct()
+    {
+        $this->baskets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +148,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBirthday(\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Basket>
+     */
+    public function getBaskets(): Collection
+    {
+        return $this->baskets;
+    }
+
+    public function addBasket(Basket $basket): self
+    {
+        if (!$this->baskets->contains($basket)) {
+            $this->baskets->add($basket);
+            $basket->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBasket(Basket $basket): self
+    {
+        if ($this->baskets->removeElement($basket)) {
+            // set the owning side to null (unless already changed)
+            if ($basket->getUser() === $this) {
+                $basket->setUser(null);
+            }
+        }
 
         return $this;
     }
