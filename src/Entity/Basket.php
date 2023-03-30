@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BasketRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Table(name: 'i23_basket')]
 #[ORM\Entity(repositoryClass: BasketRepository::class)]
 class Basket
 {
