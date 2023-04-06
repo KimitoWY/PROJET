@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -49,6 +50,7 @@ class SecurityController extends AbstractController
         $user = new User();
 
         $form = $this->createForm(UserType::class, $user);
+        $form->add('send', SubmitType::class, ['label' => 'Créer compte']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
