@@ -1,0 +1,12 @@
+{% extends 'Layouts/siteDeVente.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block titre_principal %}Site de vente de Théo Berroyer : Inscription{% endblock %}
+
+{% block vue %}
+    <div>
+        {{ form(formCreate) }}
+        <button type="submit">Créer compte</button>
+    </div>
+{% endblock %}
