@@ -13,14 +13,14 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: '_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
-            $this->addFlash('Warning', "Vous êtes déjà connecté !");
-        }
+//        if ($this->getUser()) {
+//            $this->addFlash('Warning', "Vous êtes déjà connecté !");
+//        }
 
         $error = $authenticationUtils->getLastAuthenticationError();
-        if ($error){
-            $this->addFlash('Error', "Vous vous êtes trompé dans le login ou le mot de passe");
-        }
+//        if ($error){
+//            $this->addFlash('Error', "Vous vous êtes trompé dans le login ou le mot de passe");
+//        }
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
