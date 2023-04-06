@@ -21,10 +21,9 @@ class UserType extends AbstractType
                     'label' => 'Login',
                     'required' => true
                 ])
-            ->add('roles')
             ->add('password',
-                RepeatedType::class, [
-                    'type' => PasswordType::class,
+                PasswordType::class, [
+                    'label' => 'Mot de passe',
                     'required' => true
                 ])
             ->add('nom',
@@ -34,11 +33,12 @@ class UserType extends AbstractType
                 ])
             ->add('prenom',
                 TextType::class, [
-                    'label' => 'Prenom',
+                    'label' => 'Prénom',
                     'required' => true
                 ])
             ->add('birthday',
                 DateType::class, [
+                    'label' => 'Date de naissance',
                     'years' => range(date('Y'), 1923)
                 ])
         ;
