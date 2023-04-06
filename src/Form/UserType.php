@@ -18,7 +18,7 @@ class UserType extends AbstractType
         $builder
             ->add('login',
                 TextType::class, [
-                    'login' => 'Login',
+                    'label' => 'Login',
                     'required' => true
                 ])
             ->add('roles')
