@@ -1,0 +1,26 @@
+{# Template intermédiaire #}
+{% extends 'Layouts/layout.html.twig' %}
+
+{% block title %}VenteTB{% endblock %}
+
+{% block body %}
+    <div id="header">
+        {% include 'Layouts/header.html.twig' %}
+    </div>
+
+    <div id="menu">
+        {{ render(controller('App\\Controller\\AccueilController::menuAction')) }}
+    </div>
+
+    <div id="titre">
+        <h1>{% block titre_principal %}Site de vente de Théo Berroyer{% endblock %}</h1>
+    </div>
+
+    <div id="vue">
+        {% block vue %}{% endblock %}
+    </div>
+
+    <div id="footer">
+        {% include 'Layouts/footer.html.twig' %}
+    </div>
+{% endblock %}
