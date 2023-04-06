@@ -70,6 +70,6 @@ class SecurityController extends AbstractController
             }
         }
 
-        return $this->render('security/create.html.twig', ['formCreate' => $form]);
+        return $this->render('security/create.html.twig', ['formCreate' => $form->createView()]);
     }
 }
